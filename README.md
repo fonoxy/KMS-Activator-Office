@@ -20,10 +20,7 @@ Each XML file in `/website/xml/` contains a 2 digit number at the start example 
 
 The `/website/versions/` directory contains office installations if you want to install office from your own website. To download a specific versions use the `/website/setup.exe` file and as an `Administrator` run the command `setup.exe /download version.xml` and then upload the selected version to `/website/versions/`. Each verison takes about 2-5 GB of storage.
 
-
----
-
-
+#
 
 ### How to setup your website
 
@@ -62,8 +59,7 @@ These are all the prameters and what they do in the `/website/idndex.php` file.
 |    &xml    |               Return the XML file               |    x    |    ?id=Office%20Professional%20Plus%202019&xml    |
 | &xml&hosted | If hosted, returns XML with self-hosted settings |    x    | ?id=Office%20Professional%20Plus%202019&xml&hosted |
 
----
-
+#
 
 ### Want to host your own KMS Server?
 
