@@ -1,5 +1,5 @@
 <?php
-// Get the 'id', 'xml', 'hosted', and 'versions' parameters from the URL
+$root = "/kms/office/versions/"
 $id = isset($_GET['id']) ? urldecode($_GET['id']) : null;
 $xml = isset($_GET['xml']);  // Check if 'xml' parameter exists (whether it's true or not)
 $hosted = isset($_GET['hosted']); // Check if 'hosted' parameter exists
@@ -17,7 +17,7 @@ if ($versions) {
             $version = pathinfo($file, PATHINFO_FILENAME);
             
             // Remove the first letter/number from the version string
-            $version = substr($version, 1);  // This removes the first character
+            $version = substr($version, 2);  // This removes the first character
             
             $versions_list[] = $version;
         }
@@ -66,7 +66,7 @@ elseif ($xml) {
             $encoded_id = str_replace('+', '%20', $encoded_id); // Replace '+' with '%20'
             $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
             $current_host = $protocol . '://' . $_SERVER['HTTP_HOST'];
-            $add_element->addAttribute('SourcePath', $current_host . '/kms/office/versions/' . $encoded_id . '/');
+            $add_element->addAttribute('SourcePath', $current_host . $root . $encoded_id . '/');
             $add_element->addAttribute('AllowCdnFallback', 'TRUE');
 
             // Convert the modified XML back to a string

@@ -5,11 +5,12 @@ import time
 import glob
 
 # Sets the host and kmshost and calls the get_versions function
-def setup(h="http://au.ldtp.com",kh="au.ldtp.com"):
+def setup(h="http://au.ldtp.com",kh="au.ldtp.com",r="/kms/office"):
     os.system("cls")
-    global host, versions, kmshost
+    global host, versions, kmshost, root
     host = h
     kmshost = kh
+    root = r
     versions = get_versions()
     os.system("cls")
     main_menu()
@@ -21,14 +22,14 @@ def selected_version(number):
 
 # Gets all the available version it supports
 def get_versions():
-    response = requests.get(f"{host}/kms/office/?versions")
+    response = requests.get(f"{host}{root}/?versions")
     versions = response.json()
     return versions
 
 # Gets the key based on what version is specified by making a web request
 def get_key(ver):
     ver = ver.replace(" ", "%20")
-    ver = requests.get(f"{host}/kms/office/?id={ver}")
+    ver = requests.get(f"{host}{root}/?id={ver}")
     return ver.text
 
 # Activates windows to the host kmshost depending on the name of the version.
@@ -48,8 +49,8 @@ def install(selected_version):
     os.system("cls")
     os.system(f"title Installing {selected_version}")
     print(f"Installing {selected_version}")
-    urllib.request.urlretrieve(f"{host}/kms/office/setup.exe", "setup.exe") # downloads the installer
-    urllib.request.urlretrieve(f"{host}/kms/office/?id={selected_version.replace(" ", "%20")}&xml", "selected_version.xml") # downloads the xml file that contains the correct version to install
+    urllib.request.urlretrieve(f"{host}{root}/setup.exe", "setup.exe") # downloads the installer
+    urllib.request.urlretrieve(f"{host}{root}/?id={selected_version.replace(" ", "%20")}&xml", "selected_version.xml") # downloads the xml file that contains the correct version to install
     os.system("setup.exe /configure selected_version.xml") # runs the installation script
     os.system("del setup.exe selected_version.xml")
     print(f"{selected_version} installer has finished if there was an error make sure this was run as an Administrator and Office is not installed already.\n \nDo you want to activate Office {selected_version}\nType 'yes' to activate or press Enter (leave blank) to skip.")
@@ -122,6 +123,7 @@ def set_host_menu():
     os.system("title Host Setting Screen/Menu")
     h = input("Example of host 'http://example.com' include the http:// or https:// \nSet Host: ")
     kh = input("\nExample of KMS host 'example.com' DO NOT INCLUDE http:// or https:// or any other protocols\n Set KMS Host: ")
-    setup(h,kh)
+    r = input("\n Example of root '/office/kms' Make sure you include the slash at the start but not at the end\n Set Root Path: ")
+    setup(h,kh,r)
 
 setup()
