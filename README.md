@@ -38,7 +38,7 @@ The `/website/versions/` directory contains office installations if you want to 
 By default the python script will look for `yourdomain.com/kms/office/` if you want to change this edit line `8` in the file `/client/main.py` by changing `r`.
 
 ```python
-def setup(h="http://au.ldtp.com",kh="au.ldtp.com",r="/kms/office"):
+def setup(h="http://home.nerdtown.cc",kh="home.nerdtown.cc",r="/kms/office"):
 ```
 
 Also set  `h` and `kh` to your domain and KMS server. Include `https://` or `http://` for `h`.
@@ -63,7 +63,7 @@ These are all the prameters and what they do in the `/website/idndex.php` file.
 
 ### Want to host your own KMS Server?
 
-If you would like to host your own KMS server visit https://au.ldtp.com/kms/server/ and follow the instructions
+If you would like to host your own KMS server visit https://home.nerdtown.cc/kms/server/ and follow the instructions
 When running the client make sure it is run as an administrator otherwise it will fail activation and installation.
 ###
 Thanks to [@Wind4](https://github.com/Wind4) for the KMS server

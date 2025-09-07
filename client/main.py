@@ -5,7 +5,7 @@ import time
 import glob
 
 # Sets the host and kmshost and calls the get_versions function
-def setup(h="http://au.ldtp.com",kh="au.ldtp.com",r="/kms/office"):
+def setup(h="http://home.nerdtown.cc",kh="home.nerdtown.cc",r="/kms/office"):
     os.system("cls")
     global host, versions, kmshost, root
     host = h
